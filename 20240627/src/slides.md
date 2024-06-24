@@ -8,11 +8,29 @@ colorSchema: dark
 ## 交互素材仓库（前端）
 
 
-<!-- --- -->
-<!-- layout: intro -->
-<!-- --- -->
+---
+layout: intro
+---
 
-<!-- # 1 -->
+# 关于我
+
+---
+layout: center
+class: text-center
+growX: 50
+growY: 100
+---
+
+<h1 flex="~ col">
+<div transition duration-500 :class="$clicks <= 0 ? 'scale-150' : 'op50'">
+  什么是最佳实践？
+</div>
+<div text-xl mt4 forward:delay-300 v-click>
+  <span>最佳实践是一个管理学概念，认为存在某种技术、方法、过程、活动或机制可以使生产或管理实践的<span text-yellow2 italic v-mark.yellow.underline.delay300="2">结果达到最优</span>，并<span text-yellow2 italic v-mark.yellow.underline.delay300="2">减少出错</span>的可能性。</span>
+  <sup text-xs opacity-75>维基百科</sup>
+</div>
+</h1>
+
 
 ---
 layout: cover
@@ -23,29 +41,64 @@ layout: cover
   为什么会分享这个话题？
 </div>
 <div text-xl mt10 forward:delay-300 v-click>
+  KPI、
   目前在项目协同上，发现一些问题？ or 让大家能够在相同的规范或者认知中进行产出
 </div>
 </h1>
 
 ---
-layout: cover
+layout: center
+class: text-center
+growX: 50
+growY: 100
 ---
 
 <h1 flex="~ col">
-<div text-2xl origin-top-left transition duration-500 :class="$clicks <= 1 ? 'scale-150' : 'op50'">
-  什么是最佳实践？
-</div>
-<div text-xl mt10 forward:delay-300 v-click>
-  <span>最佳实践是一个管理学概念，认为存在某种技术、方法、过程、活动或机制可以使生产或管理实践的<span text-yellow2 italic v-mark.yellow.underline.delay300="2">结果达到最优</span>，并<span text-yellow2 italic v-mark.yellow.underline.delay300="2">减少出错</span>的可能性。</span>
-  <sup text-xs opacity-75>维基百科</sup>
+<div transition duration-500 :class="$clicks <= 0 ? 'scale-150' : 'op50'">
+  怎么做？
 </div>
 </h1>
+<!-- 
+没这个概念
+who case～～能跑就行！
+别人怎么做就怎么做
+不知道什么是最佳
+-->
+
+
+---
+layout: center
+class: text-center
+growX: 50
+growY: 100
+---
+
+<h1 flex="~ col">
+<div transition duration-500 :class="$clicks <= 0 ? 'scale-200' : 'op50'">
+  portal-fe
+</div>
+
+<span v-click ttransition duration-500 text-6xl :class="$clicks > 1 ? 'op50 important-text-2xl' : ''">创建时长</span>
+<span v-click relative inline-block>
+  <span ml4 v-mark.linethrough.red.delay200="{at:3,roughness:6,seed:146}" transition inline-block :class="$clicks >= 3 ? 'op50' : ''">3坤年</span>
+</span>
+<span ml2 v-click font-hand bold absolute rotate--4 text-2xl text-lime delay-300 >7年半</span>
+
+</h1>
+
+<div v-click>
+包含项目：
+playturbo
+warehouse
+video-editor
+ve-pro
+assets-factory
+cloud-clip
+ai
+</div>
+
 
 <!-- 
-怎么做好？
-完成一个功能
-做好一个功能
-
 [click] 时间、质量（设计合理性、稳定性、可维护性）如何平衡
 
 我们可以总结出哪些最佳实践？
@@ -63,7 +116,7 @@ layout: cover
 这没问题，这也有很多好处
 例如：
 我们可以很方便的复用其他项目的功能模块（只要它足够的独立）
-多个项目可以统一环境，代码风格eslint、构建环境webpack、技术栈、请求器
+多个项目可以统一环境，代码风格eslint、git commit、构建环境webpack、技术栈、请求器
 
 不过，这也往往带来一些比较可怕的事情
 在改动某个项目中功能或对该功能进行破坏性调整的时候，并未考虑到该功能被其他项目所引用
@@ -75,10 +128,204 @@ layout: cover
 
 -->
 
+---
+growX: 50
+growY: 130
+---
+
+# <span font-hand text-green scale-110 ml1 inline-block>站在巨人的肩膀上</span>
+
+<div flex="~ gap-2 items-center" text-indigo mt-15 v-click>
+  <div i-ph-hammer-duotone text-2xl />
+  <span>工具链</span>
+</div>
+
+<div grid="~ cols-[max-content_min-content_auto] items-center gap-6" py8 px3>
+  <div flex="~ gap-2 items-center" text-blue relative v-click>
+    <div w-35px h-45px border="l b gray/30" left-0 bottom-15px absolute />
+    <div i-ph-magnifying-glass-duotone text-2xl ml-12/>
+    <span>国际化i18n</span>
+  </div>
+  <div i-ph-arrow-right-duotone op50 v-click />
+  <div v-after>只需下载远程Excel文件，一个命令完成所有项目的翻译解析导入</div>
+
+  <div flex="~ gap-2 items-center" text-lime relative v-click>
+    <div w-35px h-56px border="l b gray/30" left-0 bottom-15px absolute />
+    <div i-ph-book-bookmark-duotone text-2xl ml-12/>
+    <span>Bump tag</span>
+  </div>
+  <div i-ph-arrow-right-duotone op50 v-click />
+  <div v-after>自动校验是否同步最新代码、并根据规则创建tag</div>
+
+  <div flex="~ gap-2 items-center" text-amber relative v-click>
+    <div w-35px h-56px border="l b gray/30" left-0 bottom-15px absolute />
+    <div i-ph-currency-circle-dollar-duotone text-2xl ml-12/>
+    <span>Figma icons</span>
+  </div>
+  <div i-ph-arrow-right-duotone op50 v-click />
+  <div v-after>实现从设计、发布、通过自动化脚本同步到开发端的自动化流程</div>
+
+  <div flex="~ gap-2 items-center" text-orange relative v-click>
+    <div w-35px h-56px border="l b gray/30" left-0 bottom-15px absolute />
+    <div i-ph-plugs-duotone text-2xl ml-12 />
+    <span>Auto import</span>
+  </div>
+  <div i-ph-arrow-right-duotone op50 v-click />
+  <div v-after>让<span text-green>Figma icons</span>、<span text-green>Pt组件</span>的使用更加简单；也让项目对第三方组件引入方式提供了更多的可能性</div>
+</div>
+
+<div text-white:50 v-click="9">
+丰富的 <span v-mark.box.teal.delay400="5" text-teal mx1>工具链</span> 让你的开发更加简单～</div>
+
+
+
+
 <!-- 
 最佳实践如果去应用到我们的团队中来？
+以下是一些前端代码的最佳实践：
 
+git 协同规范：https://confluence.mobvista.com/pages/viewpage.action?pageId=16679591
+git rebase
+
+工具链
+ci
+i18n
+bump-tag
+unplugin-auto-import
+svg-icon vs figma-icons-vue https://confluence.mobvista.com/pages/viewpage.action?pageId=86157550
+
+开发环境
+volar https://marketplace.visualstudio.com/items?itemName=Vue.volar
+
+公共模块
+pt-components
+common/components
+common/utils
+common/enums
+types
+
+编码
+vue2.x
+vuex vs pinia
+composition api vs options api vs class component style
+TS（类型提示、类型编程）（案例：接口定义、剧本定义、组件设计、Hooks开发）
+组件设计（原子组件、HOC、业务组件）
+Hooks开发
+break change
+
+代码提交（如果提交你的代码，让reviewer更加容易的get到你要解决的问题）
+
+时间 or 质量 是否都可兼得？
+如何？
+
+使用模块化：提高代码的可维护性和可重用性。
+// 使用模块化的方式组织你的代码，例如使用 ES Modules 或者模块打包工具（如Webpack、Rollup等）。这样可以
+
+保持代码简洁：遵循单一职责原则，尽量保持函数和组件的代码简洁且易于理解。使用清晰的命名和注释，以提高代码的可读性。
+
+遵循代码风格指南：选择并遵循适合你项目的代码风格指南，例如 Airbnb JavaScript Style Guide、Google JavaScript Style Guide等。使用一致的缩进、命名约定等，有助于团队合作和代码维护。
+
+错误处理和异常情况：在代码中处理错误和异常情况，并给出适当的反馈或错误处理机制。使用 try-catch 来捕获可能发生异常的代码块，并提供有意义的错误消息。
+
+性能优化：注意性能优化，包括减小文件大小、使用缓存、延迟加载等。优化图片、使用压缩和缓存技术来加快页面加载速度。
 -->
+
+---
+grow: right
+---
+
+# 看似很难，其实一点也不简单的技术
+
+<div flex="~ col gap-1" pt6>
+
+
+<div text-xl text-white:50 v-click>
+<span flex="inline gap-1 items-center" text-purple translate-y-0.6><div i-ph-puzzle-piece-duotone />Composition API</span>
+</div>
+<div flex="~ gap-2 items-center" mb3 ml7 v-click>
+  <div i-ph-arrow-bend-down-right-duotone op50 />
+  <div>
+    用于提供 组合式 API 的 Vue 2 插件
+  </div>
+</div>
+
+
+<div text-xl text-white:50 v-click>
+<span flex="inline gap-1 items-center" text-blue translate-y-0.6><div i-ph-book-bookmark-duotone />TypeScript</span>
+</div>
+<div flex="~ gap-2 items-center" mb3 ml7 v-click>
+  <div i-ph-arrow-bend-down-right-duotone op50 />
+  <div>
+    大家都应该要会的拓展语言，类型提示、类型编程让我们更早的发型bug；让接口定义、剧本定义、组件设计、Hooks等，开发的功能代码即文档
+  </div>
+</div>
+
+<div text-xl text-white:50 v-click>
+<span flex="inline gap-1 items-center" text-yellow translate-y-0.6><div i-ph-lightbulb-filament-duotone />组件设计</span>
+</div>
+<div flex="~ gap-2 items-center" mb3 ml7 v-click>
+  <div i-ph-arrow-bend-down-right-duotone op50 />
+  <div>
+    了解如何去设计和实现原子组件、HOC、业务组件
+  </div>
+</div>
+
+<div text-xl text-white:50 v-click>
+<span flex="inline gap-1 items-center" text-yellow translate-y-0.6><div i-ph-lightbulb-filament-duotone />Hooks</span>
+</div>
+<div flex="~ gap-2 items-center" mb3 ml7 v-click>
+  <div i-ph-arrow-bend-down-right-duotone op50 />
+  <div>
+    Hooks 思想可以引导你如何去组织你的复杂庞大的代码逻辑，让你体验写代码就跟写诗一样的感觉
+  </div>
+</div>
+
+
+<div text-xl text-white:50 v-click>
+<span flex="inline gap-1 items-center" text-green translate-y-0.6><div i-ph-warning-octagon-duotone />代码提交</span>
+</div>
+<div flex="~ gap-2 items-center" mb3 ml7 v-click>
+  <div i-ph-arrow-bend-down-right-duotone op50 />
+  <div>
+    如何提交你的代码，让reviewer更加容易的get到你要解决的问题
+  </div>
+</div>
+
+</div>
+
+
+---
+grow: right
+class: text-center
+---
+
+<div transition duration-800 :class="$clicks < 2 ? 'translate-y-45' : ''" relative>
+
+# 精通 Vue2.x <span v-mark.linethrough.red.delay200="{at:1,roughness:6,seed:146}" transition inline-block :class="$clicks >= 1 ? 'op50' : ''"> Options API</span>
+
+<div font-hand bold absolute rotate--4 left-106 top-10 text-3xl text-lime1 delay-300 v-click>Composition API</div>
+
+</div>
+
+<iframe v-click mt12 src="/markdown/why-composition-api.md" frameborder="0" width="100%" height="500px"></iframe>
+
+
+---
+grow: right
+class: text-center
+---
+
+<div transition duration-800 :class="$clicks < 1 ? 'translate-y-45' : ''">
+
+# <span text-blue >TypeScript</span>
+
+</div>
+
+<div text-white:50 text-2xl v-click>
+最佳实践是一个管理学概念，认为存在某种技术、方法、过程、活动或机制可以使实践的结果达到最优，并减少出错的可能性。
+A tool should help you get things done <span text-yellow2 italic v-mark.yellow.underline.delay300="2">faster</span> and/or <span text-lime2 v-mark.lime.underline.delay700="2">easier</span>
+</div>
+
 
 ---
 layout: center
@@ -87,24 +334,59 @@ growX: 50
 growY: 100
 ---
 
-<h1 important-text-5xl v-click>什么是最佳实践？</h1>
+<h1 important-text-5xl v-click>Component design</h1>
 
 <div text-white:50 text-2xl v-click>
 最佳实践是一个管理学概念，认为存在某种技术、方法、过程、活动或机制可以使实践的结果达到最优，并减少出错的可能性。
 A tool should help you get things done <span text-yellow2 italic v-mark.yellow.underline.delay300="2">faster</span> and/or <span text-lime2 v-mark.lime.underline.delay700="2">easier</span>
 </div>
 
-<!--
-So first, before we diving into today's topic, let's discuss a bit what we are expecting when working in open source.
+---
+layout: center
+class: text-center
+growX: 50
+growY: 100
+---
 
-We know that most of the open source projects we use daily are tools, but have you ever think about the question that, what defines a tool?
+<h1 important-text-5xl v-click>Hooks</h1>
 
-[click] The definition should be pretty straightforward and maybe you already have the answer in your mind.
+<div text-white:50 text-2xl v-click>
+最佳实践是一个管理学概念，认为存在某种技术、方法、过程、活动或机制可以使实践的结果达到最优，并减少出错的可能性。
+A tool should help you get things done <span text-yellow2 italic v-mark.yellow.underline.delay300="2">faster</span> and/or <span text-lime2 v-mark.lime.underline.delay700="2">easier</span>
+</div>
 
-[click] In my interpretation, a tool should help you get things done faster and/or easier, at least one of them.
 
-I guess no one wants to use a tool that makes things slower and more complicated, right?
--->
+---
+layout: center
+class: text-center
+growX: 50
+growY: 100
+---
+
+<h1 important-text-5xl v-click>Breaking-change</h1>
+
+<div text-white:50 text-2xl v-click>
+最佳实践是一个管理学概念，认为存在某种技术、方法、过程、活动或机制可以使实践的结果达到最优，并减少出错的可能性。
+A tool should help you get things done <span text-yellow2 italic v-mark.yellow.underline.delay300="2">faster</span> and/or <span text-lime2 v-mark.lime.underline.delay700="2">easier</span>
+</div>
+
+
+
+---
+layout: center
+class: text-center
+growX: 50
+growY: 100
+---
+
+<h1 important-text-5xl v-click>Code commit</h1>
+
+<div text-white:50 text-2xl v-click>
+最佳实践是一个管理学概念，认为存在某种技术、方法、过程、活动或机制可以使实践的结果达到最优，并减少出错的可能性。
+A tool should help you get things done <span text-yellow2 italic v-mark.yellow.underline.delay300="2">faster</span> and/or <span text-lime2 v-mark.lime.underline.delay700="2">easier</span>
+</div>
+
+
 
 ---
 grow: right
@@ -120,53 +402,3 @@ title: What Makes a Good Tool?
 <div font-hand bold absolute rotate--4 left-106 top-10 text-3xl text-lime1 delay-300 v-click>General & Useful</div>
 
 </div>
-
-<div left-70 top-15 relative transition duration-400 forward:delay-600 v-click="2">
-  <img src="/balance-body.png" w-80 absolute left-0 top-0 />
-  <img
-    src="/balance-arm.png"
-    w-80 absolute left-0 top-0 transition duration-1000
-    class="origin-[50%_27%]"
-    :class="$clicks >= 5 ? 'animate-balance-shake' : ''"
-  />
-  <div transition duration-1000 :class="$clicks >= 5 ? 'animate-balance-move-left' : ''" >
-    <img src="/cost-of-learn.png" w-30 absolute left--35 top-20 duration-800 v-click="4" />
-    <img src="/balance-balls-left.png" w-80 absolute left-0 top-0 v-click="3" />
-    <img src="/balance-left.png" w-80 absolute left-0 top-0 />
-  </div>
-  <div transition duration-1000 :class="$clicks >= 5 ? 'animate-balance-move-right' : ''" >
-    <img src="/cost-of-doing.png" w-28 absolute left-85 top-34 duration-800 v-click="4" />
-    <img src="/balance-ball-right.png" w-80 absolute left-0 top-0 v-click="3" />
-    <img src="/balance-right.png" w-80 absolute left-0 top-0 />
-  </div>
-</div>
-
-<!--
-So assume we want to build a new open source project, a tool for people to use. What would you consider to justify if the tool you going to build is a good one or not?
-
-Well, my answer is no, you can't not really tell that without being verified by the community - because there are so many factors that can affect if an open source project would work out or not.
-
-But also, I want to emphasize that in this context, "Good" is a relative term that deps on your expectation.
-It's totally ok to build a tool that solves your own problem and call it a day - it's a great tool that works for you anyway.
-Actually I have a plenty of such tools and I am happy about that even no one else is using them, but they get my job done at the end of the day, right?
-
-So let's revise our goal. Let's say we want to build a tool that can be beneficial to not only ourselves but also to more people, and probably the community could also help us to make the tool better for everyone.
-
-[click] So the question becomes how could we make a general and useful tool for ppl to use?.
-
-[click] I'd say every decision comes with a trade-off. When users consider if they want to use a tool, they would justify and cost and the benefits they can get from it.
-
-[click] So here we have a balance. If I gonna to put two most important factors on the balance, I'd pick "Cost of learning and using the tools" verse the "Cost of doing something oneself".
-
-[click] In order to make users willing to use our tool, I'd say that the "Cost of learning" should be much less than the "Cost of doing"
-[click] This has been my little go-to formula to pre-evaluate if idea I have is worthwhile.
-
-For example, let's say if we want to get a summary of 10 numbers. Would you look for a library to do that? Probably no, because we could do it with a single loop in 2 line of code - the cost of doing ourself is too low that we don't even consider getting a tool.
-
-But if we are going to do some calculus, I am certainly going to find a library to do it for me, because I basically forget everything I learned in my college XD.
-
-However, on the other hand, if the library we picked requires us to understand like 100 different configurations before being able to use it, uhumm, we probably going to find another library that might be easier.
-
-Thus we know that, when we are making tools, we have to think about those cases and find a good balance to make the tool worthwhile.
--->
-
