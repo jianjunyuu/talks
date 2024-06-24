@@ -307,7 +307,7 @@ class: text-center
 
 </div>
 
-<iframe v-click mt12 src="/markdown/why-composition-api.md" frameborder="0" width="100%" height="500px"></iframe>
+<iframe forward:delay-500 v-click mt12 src="/markdown/why-composition-api.md" frameborder="0" width="100%" height="500px"></iframe>
 
 
 ---
@@ -321,11 +321,29 @@ class: text-center
 
 </div>
 
-<div text-white:50 text-2xl v-click>
-最佳实践是一个管理学概念，认为存在某种技术、方法、过程、活动或机制可以使实践的结果达到最优，并减少出错的可能性。
-A tool should help you get things done <span text-yellow2 italic v-mark.yellow.underline.delay300="2">faster</span> and/or <span text-lime2 v-mark.lime.underline.delay700="2">easier</span>
+<!-- <div v-click text-white:50 mt5>
+This is <b text-white:75>all you need</b> to start with Nuxt:
+</div> -->
+<!-- 
+<div flex="~ gap-2 items-center" v-click="2">
+  <div i-logos-npm-icon /> package.json
 </div>
+<div flex="~ gap-0 items-center" v-click="3">
+  <div class="i-logos-vue" /> app.vue
+</div> -->
 
+<div important-text-xl grid="~ cols-2 gap-x-2" mt5>
+
+<div text-left v-click="3">
+
+```ts twoslash
+import { ref } from 'vue'
+
+const count = ref(0)
+```
+
+</div>
+</div>
 
 ---
 layout: center
