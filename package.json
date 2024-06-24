@@ -1,6 +1,7 @@
 {
   "type": "module",
   "private": true,
+  "packageManager": "pnpm@7.33.7",
   "scripts": {
     "dev": "esno scripts/picker.ts dev --open",
     "typecheck": "vue-tsc --noEmit",
