@@ -309,7 +309,6 @@ class: text-center
 
 <iframe forward:delay-500 v-click mt12 src="/markdown/why-composition-api.md" frameborder="0" width="100%" height="500px"></iframe>
 
-
 ---
 grow: right
 class: text-center
@@ -321,40 +320,324 @@ class: text-center
 
 </div>
 
-<!-- <div v-click text-white:50 mt5>
-This is <b text-white:75>all you need</b> to start with Nuxt:
-</div> -->
-<!-- 
-<div flex="~ gap-2 items-center" v-click="2">
-  <div i-logos-npm-icon /> package.json
+
+---
+grow: right
+class: text-center
+clicks: 10
+---
+
+<div transition duration-800 :class="$clicks < 1 ? 'translate-y-45' : ''">
+
+# <span text-blue >TypeScript - 接口定义</span>
+
 </div>
-<div flex="~ gap-0 items-center" v-click="3">
-  <div class="i-logos-vue" /> app.vue
-</div> -->
 
-<div important-text-xl grid="~ cols-2 gap-x-2" mt5>
+<div transition forward:delay-300 v-click>
 
-<div text-left v-click="3">
+<div text-left>
 
-```ts twoslash
-import { ref } from 'vue'
+````md magic-move {at:3}
+```ts {3}
+import { AxiosPromise } from 'axios'
 
-const count = ref(0)
+export function projectSave(): AxiosPromise
 ```
 
+Non-code blocks in between as ignored, you can put some comments.
+
+```ts
+import type { _Response } from '@pt/api/type'
+
+export function projectSave(): _Response<data model type, like: { id: number; name: string }>
+```
+````
+
+</div>
+<div text-xs text-red text-left v-if="$clicks === 2">
+  它的返回类型并不明确
+</div>
+
+</div>
+
+
+<div mt1 text-left grid="~ cols-2 gap-x-2">
+
+
+<div transition forward:delay-300 v-click="3" v-if="$clicks <= 4">
+<div flex="~ items-center" style="line-height: 1"><span text-2xl i-vscode-icons:file-type-typescript />
+  &nbsp;playsmart/src/types/request.d.ts
+</div>
+<div>
+
+```ts
+declare module 'request' {
+  export interface ResponseData<T> {
+    code: number
+    data: T
+    msg: string
+  }
+
+  export interface ListData<T> {
+    list: T[] | null
+    page: number
+    page_size: number
+    total: number
+  }
+
+  export interface ListDataPagingParams {
+    page?: number
+    page_size?: number
+  }
+}
+```
 </div>
 </div>
 
+
+
+<div v-click="4" v-if="$clicks <= 4">
+<div flex="~ items-center" style="line-height: 1"><span text-2xl i-vscode-icons:file-type-typescript />&nbsp;playturbo/src/api/type.ts</div>
+<div>
+
+```ts
+import type { AxiosPromise } from 'axios'
+import type { ResponseData } from 'request'
+
+export type _Response<T> = AxiosPromise<ResponseData<T>>
+```
+</div>
+</div>
+
+
+</div>
+
+<div text-left mt10 transition forward:delay-300 v-click v-if="$clicks < 7">
+类型关联
+
+````md magic-move {at:6}
+```ts
+// 用户数据模型
+interface User {
+  id: number
+  name: string
+}
+
+// 接口参数
+interface GetUserParams {
+  id: number
+}
+
+// 接口定义
+function getUser(
+  id: number
+): _Response<User>
+```
+
+```ts {9,14}
+// 用户数据模型
+interface User {
+  id: number
+  name: string
+}
+
+// 接口参数
+interface GetUserParams {
+  id: User['id']
+}
+
+// 接口定义
+function getUser(
+  id: User['id']
+): _Response<User>
+```
+````
+</div>
+
+
+<div text-left mt10 transition forward:delay-300 v-if="$clicks <= 9">
+列表数据
+
+````md magic-move {at:8}
+```ts {7-8}
+// 用户数据模型
+interface User {
+  id: number
+  name: string
+}
+
+// 获取用户列表
+function getUsers(): _Response<ListData<User>>
+```
+
+```ts {9-15}
+// 用户数据模型
+interface User {
+  id: number
+  name: string
+}
+
+// 获取用户列表
+function getUsers(): _Response<ListData<User>>
+// 等同于
+function getUsers(): _Response<{
+  list: User[] | null
+  page: number
+  page_size: number
+  total: number
+}>
+```
+
+```ts {11}
+// 用户数据模型
+interface User {
+  id: number
+  name: string
+}
+
+// 获取用户列表
+function getUsers(): _Response<ListData<User>>
+// 等同于
+function getUsers(): _Response<{
+  list: User[] | null
+  page: number
+  page_size: number
+  total: number
+}>
+```
+````
+</div>
+
+
+<div text-left mt10 transition forward:delay-300 v-click>
+分页参数定义
+
+```ts
+import type { ListDataPagingParams } from 'request'
+
+interface GetUsersParams 
+  extends ListDataPagingParams,
+  Partial<User, 'id' | 'age'> {
+  // ...other
+}
+
+// 获取用户列表
+function getUsers(data: GetUsersParams): _Response<ListData<User>>
+```
+</div>
+
 ---
-layout: center
+grow: right
 class: text-center
-growX: 50
-growY: 100
 ---
 
-<h1 important-text-5xl v-click>Component design</h1>
+<div transition duration-800 :class="$clicks < 1 ? 'translate-y-45' : ''">
 
-<div text-white:50 text-2xl v-click>
+# <span text-blue >TypeScript - Define Component Props</span>
+
+</div>
+
+
+<div transition forward:delay-300 v-click>
+<div flex="~ items-center" style="line-height: 1"><span text-2xl i-vscode-icons:file-type-vue />
+  &nbsp;tracks.vue
+</div>
+
+<div text-left>
+
+````md magic-move {at:2}
+```ts
+import { definePropType } from '@types-vue/props'
+```
+
+```vue {7}
+<script lang="ts">
+import { definePropType } from '@types-vue/props'
+
+export default defineComponent({
+  name: 'Tracks',
+  // 是否可以拖拽资源到轨道
+  enableDraggingAsset: Boolean,
+  data: {
+    type: definePropType<Track[]>(Array),
+  },
+  modeType: {
+    type: definePropType<TrackMode>(String),
+    default: TrackMode.Tradition,
+  },
+})
+</script>
+```
+
+```vue {8-10}
+<script lang="ts">
+import { definePropType } from '@types-vue/props'
+
+export default defineComponent({
+  name: 'Tracks',
+  // 是否可以拖拽资源到轨道
+  enableDraggingAsset: Boolean,
+  data: {
+    type: definePropType<Track[]>(Array),
+  },
+  modeType: {
+    type: definePropType<TrackMode>(String),
+    default: TrackMode.Tradition,
+  },
+})
+</script>
+```
+
+```vue {10-13}
+<script lang="ts">
+import { definePropType } from '@types-vue/props'
+
+export default defineComponent({
+  name: 'Tracks',
+  enableDraggingAsset: Boolean,
+  data: {
+    type: definePropType<Track[]>(Array),
+  },
+  modeType: {
+    type: definePropType<TrackMode>(String),
+    default: TrackMode.Tradition,
+  },
+})
+</script>
+```
+
+```ts
+export enum TrackMode {
+  // 传统模式
+  Tradition = 'tradition',
+  // 片段模式
+  Fragment = 'fragment',
+}
+
+// or
+
+type TrackMode = 'tradition' | 'fragment'
+```
+````
+
+</div>
+</div>
+
+
+---
+grow: right
+class: text-center
+---
+
+<div transition duration-800 :class="$clicks < 2 ? 'translate-y-45' : ''" relative>
+
+# Component <span text-lime v-mark.linethrough.red.delay200="{at:1,roughness:6,seed:146}" transition inline-block :class="$clicks >= 1 ? 'op50' : ''"> Development</span>
+
+<div font-hand bold absolute rotate--4 left-126 top-10 text-3xl text-lime1 delay-300 v-click>Design</div>
+
+</div>
+
+<div mt12 text-white:50 text-2xl transition forward:delay-300 v-click>
 最佳实践是一个管理学概念，认为存在某种技术、方法、过程、活动或机制可以使实践的结果达到最优，并减少出错的可能性。
 A tool should help you get things done <span text-yellow2 italic v-mark.yellow.underline.delay300="2">faster</span> and/or <span text-lime2 v-mark.lime.underline.delay700="2">easier</span>
 </div>
@@ -372,39 +655,6 @@ growY: 100
 最佳实践是一个管理学概念，认为存在某种技术、方法、过程、活动或机制可以使实践的结果达到最优，并减少出错的可能性。
 A tool should help you get things done <span text-yellow2 italic v-mark.yellow.underline.delay300="2">faster</span> and/or <span text-lime2 v-mark.lime.underline.delay700="2">easier</span>
 </div>
-
-
----
-layout: center
-class: text-center
-growX: 50
-growY: 100
----
-
-<h1 important-text-5xl v-click>Breaking-change</h1>
-
-<div text-white:50 text-2xl v-click>
-最佳实践是一个管理学概念，认为存在某种技术、方法、过程、活动或机制可以使实践的结果达到最优，并减少出错的可能性。
-A tool should help you get things done <span text-yellow2 italic v-mark.yellow.underline.delay300="2">faster</span> and/or <span text-lime2 v-mark.lime.underline.delay700="2">easier</span>
-</div>
-
-
-
----
-layout: center
-class: text-center
-growX: 50
-growY: 100
----
-
-<h1 important-text-5xl v-click>Code commit</h1>
-
-<div text-white:50 text-2xl v-click>
-最佳实践是一个管理学概念，认为存在某种技术、方法、过程、活动或机制可以使实践的结果达到最优，并减少出错的可能性。
-A tool should help you get things done <span text-yellow2 italic v-mark.yellow.underline.delay300="2">faster</span> and/or <span text-lime2 v-mark.lime.underline.delay700="2">easier</span>
-</div>
-
-
 
 ---
 grow: right
