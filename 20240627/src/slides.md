@@ -631,16 +631,67 @@ class: text-center
 
 <div transition duration-800 :class="$clicks < 2 ? 'translate-y-45' : ''" relative>
 
-# Component <span text-lime v-mark.linethrough.red.delay200="{at:1,roughness:6,seed:146}" transition inline-block :class="$clicks >= 1 ? 'op50' : ''"> Development</span>
+# <span text-lime>Component <span v-mark.linethrough.red.delay200="{at:1,roughness:6,seed:146}" transition inline-block :class="$clicks >= 1 ? 'op50' : ''"> Development</span></span>
 
 <div font-hand bold absolute rotate--4 left-126 top-10 text-3xl text-lime1 delay-300 v-click>Design</div>
 
 </div>
 
-<div mt12 text-white:50 text-2xl transition forward:delay-300 v-click>
-最佳实践是一个管理学概念，认为存在某种技术、方法、过程、活动或机制可以使实践的结果达到最优，并减少出错的可能性。
-A tool should help you get things done <span text-yellow2 italic v-mark.yellow.underline.delay300="2">faster</span> and/or <span text-lime2 v-mark.lime.underline.delay700="2">easier</span>
+<!-- <div mt12 text-left text-white:50 text-4xl transition forward:delay-300 v-click>
+<span flex="inline gap-1 items-center" text-yellow translate-y-0.6><div i-ph-lightbulb-filament-duotone />组件设计</span>
 </div>
+
+<div mt12 text-left text-white:50 text-4xl transition forward:delay-300 v-click>
+<span flex="inline gap-1 items-center" text-yellow translate-y-0.6><div i-ph-lightbulb-filament-duotone />组件设计</span>
+</div> -->
+<div grid="~ cols-2 gap-x-2">
+
+<div style="
+  background: url(/question.png) -50px center no-repeat;
+    background-size: cover;
+  width: 140px;
+  height: 400px;
+  margin-left: 60px;
+  "
+  relative
+  transition
+  forward:delay-300 v-click>
+<div absolute rotate--5 left-32 top-14 text-4xl text-hex-ebbfbd style="word-break: keep-all;">怎么设计组件呢？</div>
+</div>
+
+<div relative>
+<div style="
+  background: url(/question.png) -560px center no-repeat;
+    background-size: cover;
+  width: 140px;
+  height: 400px;
+  "
+  absolute
+  transition
+  top-24
+  right-0
+  forward:delay-300 v-click>
+<div absolute rotate-5 right-40 top-10 text-4xl text-hex-f6d949 style="word-break: keep-all;">
+  ???
+</div>
+</div>
+</div>
+</div>
+
+<!--
+首先
+了解下组件一些基本能力
+Props
+Slots
+Emits
+Methods
+
+确定要实现的功能点
+// TODO
+
+是否能提取基础能力？
+// TODO
+-->
 
 ---
 layout: center
@@ -648,7 +699,6 @@ class: text-center
 growX: 50
 growY: 100
 ---
-
 <h1 important-text-5xl v-click>Hooks</h1>
 
 <div text-white:50 text-2xl v-click>
