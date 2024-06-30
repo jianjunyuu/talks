@@ -173,7 +173,7 @@ growY: 130
 
   <div flex="~ gap-2 items-center" text-blue relative v-click>
     <div w-35px h-45px border="l b gray/30" left-0 bottom-15px absolute />
-    <div i-language text-2xl ml-12/>
+    <div i-clarity:language-line text-2xl ml-12/>
     <span>国际化i18n</span>
   </div>
   <div i-ph-arrow-right-duotone op50 v-click />
@@ -181,7 +181,7 @@ growY: 130
 
   <div flex="~ gap-2 items-center" text-lime relative v-click>
     <div w-35px h-56px border="l b gray/30" left-0 bottom-15px absolute />
-    <div i-ph-book-bookmark-duotone text-2xl ml-12/>
+    <div i-file-icons:tag text-2xl ml-12/>
     <span>Bump tag</span>
   </div>
   <div i-ph-arrow-right-duotone op50 v-click />
@@ -197,14 +197,14 @@ growY: 130
 
   <div flex="~ gap-2 items-center" text-orange relative v-click>
     <div w-35px h-56px border="l b gray/30" left-0 bottom-15px absolute />
-    <div i-ph-plugs-duotone text-2xl ml-12 />
+    <div i-unjs:unplugin text-2xl ml-12 />
     <span>Auto import</span>
   </div>
   <div i-ph-arrow-right-duotone op50 v-click />
   <div v-after>让<span text-green>Figma icons</span>、<span text-green>Pt组件</span>的使用更加简单；也让项目对第三方组件引入方式提供了更多的可能性</div>
 </div>
 
-<div text-white:50 v-click="9">
+<div text-white:50 v-click="11">
 丰富的 <span v-mark.box.teal.delay400="5" text-teal mx1>工具链</span> 让你的开发更加简单～</div>
 
 <!--

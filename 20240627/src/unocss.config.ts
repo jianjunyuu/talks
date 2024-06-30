@@ -9,7 +9,13 @@ export default mergeConfigs([
       'text-gradient': 'text-transparent bg-clip-text bg-gradient-to-tl from-green-400 via-teal-400 to-blue-500',
     },
     presets: [
-      presetIcons({ /* options */ }),
+      presetIcons({
+        collections: {
+          // carbon: () => import('@iconify-json/carbon/icons.json').then(i => i.default),
+          // mdi: () => import('@iconify-json/mdi/icons.json').then(i => i.default),
+          logos: () => import('@iconify-json/logos/icons.json').then(i => i.default),
+        }
+      }),
       presetWebFonts({
         fonts: {
           sans: 'DM Sans',
