@@ -285,7 +285,7 @@ growY: 130
 
 </div>
 
-<div text-white:50 v-click="5">
+<div text-white:50 v-click="6">
 丰富的 <span v-mark.box.teal.delay400="5" text-teal mx1>组件</span> 给你搭积木一样的开发体验～</div>
 
 <!--
@@ -396,7 +396,7 @@ grow: right
 <!--
 这里，我主要想分享下代码设计相关的
 
-[click] Composition API 是一个插件，可以让你在vue2.x版本就能体验开发风格是基于函数的组合，但组合式 API 并不是函数式编程
+[click] Composition API 需要安装一个插件，可以让你在vue2.x版本就能体验开发风格是基于函数的组合，但组合式 API 并不是函数式编程
 
 组合式 API 是以 Vue 中数据可变的、细粒度的响应性系统为基础的，而函数式编程通常强调数据不可变
 
@@ -441,11 +441,20 @@ class: text-center
 
 </div>
 
+<!--
+TypeScript 是一种基于 JavaScript 构建的强类型编程语言
+
+它可以帮我们在开发时候，通过静态分析出我们的代码的错误，而不需要等到代码真正去执行的时候才能发现错误
+
+强大的类型系统提升了代码的可维护性，使得代码维护、重构代码更加容易。
+
+而且，越是在复杂的项目，就越显得它的重要性。TypeScript已成为大中型前端项目的首先编程语言。
+-->
 
 ---
 grow: right
 class: text-center
-clicks: 10
+clicks: 6
 ---
 
 <div transition duration-800 :class="$clicks < 1 ? 'translate-y-45' : ''">
@@ -454,26 +463,15 @@ clicks: 10
 
 </div>
 
-<div transition forward:delay-300 v-click>
+<div transition forward:delay-300 v-click v-show="$clicks <= 2">
 
 <div text-left>
 
-````md magic-move {at:3}
 ```ts {3}
 import { AxiosPromise } from 'axios'
 
 export function projectSave(): AxiosPromise
 ```
-
-Non-code blocks in between as ignored, you can put some comments.
-
-```ts
-import type { _Response } from '@pt/api/type'
-
-export function projectSave(): _Response<data model type, like: { id: number; name: string }>
-```
-````
-
 </div>
 <div text-xs text-red text-left v-if="$clicks === 2">
   它的返回类型并不明确
@@ -533,10 +531,63 @@ export type _Response<T> = AxiosPromise<ResponseData<T>>
 
 </div>
 
-<div text-left mt10 transition forward:delay-300 v-click v-if="$clicks < 7">
-类型关联
+
+<div transition forward:delay-300 v-click="5">
+
+<div text-left>
 
 ````md magic-move {at:6}
+```ts {1}
+import { AxiosPromise } from 'axios'
+
+export function projectSave(): AxiosPromise
+```
+```ts
+import type { _Response } from '@pt/api/type'
+
+export function projectSave(): _Response<{id: id; name: string}>
+```
+````
+
+</div>
+</div>
+
+<!--
+在我们项目中，对类型的使用最多的场景，就是接口的返回数据模型定义描述
+
+通过接口协议，我们将约定好的数据结构类型定义下来，这样在其他人使用或者维护代码的时候，就不需要再次访问接口协议问题，也不用去猜测，这个接口会返回什么信息
+
+[click] 这是我发现的一些旧代码，它的类型是写了，但是并没有去描述接口返回的数据模型
+
+[click] 我们可以怎么去优化它呢？
+
+[click] 在request.d.ts文件，我们看到它定义了一个module，并且export出了3个interface
+
+这三个interface是根据接口规范梳理出来的统一返回格式
+
+[click] 基于这个module，我们封装一层Axios接口返回的数据模型，但是具体的数据结构，是不同接口制定的，所以这里留一个泛型`T`，具体的场景可以根据泛型`T`进行指定数据结构
+
+[click] 我们回头来看看，怎么改
+
+[click] 首先引入我们定义的工具类型，然后应用在函数的返回类型位置，并指定我们具体要返回的数据模型定义
+-->
+
+---
+grow: right
+class: text-center
+clicks: 2
+---
+
+<div transition duration-800 :class="$clicks < 1 ? 'translate-y-45' : ''">
+
+# <span text-blue >TypeScript - 类型关联</span>
+
+</div>
+
+
+<div text-left mt10 transition forward:delay-300 v-click>
+
+````md magic-move {at:2}
 ```ts
 // 用户数据模型
 interface User {
@@ -575,9 +626,30 @@ function getUser(
 ````
 </div>
 
+<!--
+[click] 这里，我定义了一个接口返回的数据模型类型、接口参数类型
 
-<div text-left mt10 transition forward:delay-300 v-if="$clicks <= 9">
-列表数据
+因为这个案例比较简单，所以我们根据标题，很快就能发现问题：id属性定义的都是`number`类型
+
+为什么说都定义为`number`类型是个问题？
+
+ `number`类型和User['id']比较：
+- 含义不一样
+- 若在很复杂的case下，辨识度低
+-->
+
+---
+grow: right
+class: text-center
+clicks: 2
+---
+
+<div transition duration-800 :class="$clicks < 1 ? 'translate-y-45' : ''">
+
+# <span text-blue >TypeScript - 列表数据</span>
+
+</div>
+<div text-left mt10 transition forward:delay-300 v-click>
 
 ````md magic-move {at:8}
 ```ts {7-8}
@@ -647,6 +719,7 @@ function getUsers(data: GetUsersParams): _Response<ListData<User>>
 ```
 </div>
 
+
 ---
 grow: right
 class: text-center
@@ -671,6 +744,17 @@ class: text-center
 import { definePropType } from '@types-vue/props'
 ```
 
+```ts
+/// import { definePropType } from '@types-vue/props'
+
+
+import { PropType } from '@vue/composition-api'
+
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-explicit-any
+export const definePropType = <T>(val: any): PropType<T> => val
+```
+
+
 ```vue {7}
 <script lang="ts">
 import { definePropType } from '@types-vue/props'
@@ -679,6 +763,26 @@ export default defineComponent({
   name: 'Tracks',
   // 是否可以拖拽资源到轨道
   enableDraggingAsset: Boolean,
+  data: {
+    type: definePropType<Track[]>(Array),
+  },
+  modeType: {
+    type: definePropType<TrackMode>(String),
+    default: TrackMode.Tradition,
+  },
+})
+</script>
+```
+
+
+```vue {7}
+<script lang="ts">
+import { definePropType } from '@types-vue/props'
+
+export default defineComponent({
+  name: 'Tracks',
+  // 是否可以拖拽资源到轨道
+  enableDraggingAsset: definePropType<boolean>(Boolean),
   data: {
     type: definePropType<Track[]>(Array),
   },
@@ -744,6 +848,35 @@ type TrackMode = 'tradition' | 'fragment'
 </div>
 </div>
 
+<!--
+[click] 这里引用了一个vue props的定义函数
+
+[click] 它本质上就是一个函数，返回指定的参数值，唯一有用的是，通过泛型方式指定定义的属性类型，并返回
+
+[click] 这里举例一个组件属性的定义
+
+高亮行代码，其实并未使用上面定义的函数，因为它是个基本类型，本身的Boolean构造函数类型就能推断出来
+
+如果想用上面的函数来定义的话，可以这样（点击click）
+
+[click] 它们效果是相等的；有多个基本类型的case也一样
+
+[click] 我们看下高亮部分，
+
+这里定义的是一个数组，这时候我们就必须要用这个函数来辅助定义，不然它是没办法推断出你具体是什么类型的数组（这里指定来Track类型）
+
+[click] 我们看下高亮部分，
+
+这里是个字符串，但是在泛型类型的位置，这里指定了枚举值TrackMode
+
+我们看看TrackMode怎么定义的
+
+[click] 这里我列了两种定义方式：枚举类型、字符串字面量联合类型
+
+它们和string类型有啥不一样么？
+
+字符串字面量 是 string类型的子集
+-->
 
 ---
 grow: right
