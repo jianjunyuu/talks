@@ -4,7 +4,7 @@ highlighter: shiki
 colorSchema: dark
 ---
 
-# 代码设计最佳实践
+# 项目工程最佳实践
 ## 交互素材仓库（前端）<span text-2xl op50> -- 余建君</span>
 
 <!--
@@ -163,18 +163,11 @@ growY: 130
 </div>
 
 <div grid="~ cols-[max-content_min-content_auto] items-center gap-6" py8 px3>
-<div flex="~ gap-2 items-center" text-hex-42b883 relative v-click>
-    <div w-35px h-45px border="l b gray/30" left-0 bottom-15px absolute />
-    <div i-ph-rocket-duotone text-2xl ml-12/>
-    <span>Schema Form</span>
-  </div>
-  <div i-ph-arrow-right-duotone op50 v-click />
-  <div v-after>通过JSON配置，快速生成表单页面，提升一些通用功能的开发效率</div>
-
   <div flex="~ gap-2 items-center" text-blue relative v-click>
     <div w-35px h-45px border="l b gray/30" left-0 bottom-15px absolute />
     <div i-clarity:language-line text-2xl ml-12/>
     <span>国际化i18n</span>
+    <a i-quill-link-out target="_blank" href="https://confluence.mobvista.com/pages/viewpage.action?pageId=98685486" />
   </div>
   <div i-ph-arrow-right-duotone op50 v-click />
   <div v-after>只需下载远程Excel文件，一个命令完成所有项目的翻译解析导入</div>
@@ -183,6 +176,7 @@ growY: 130
     <div w-35px h-56px border="l b gray/30" left-0 bottom-15px absolute />
     <div i-file-icons:tag text-2xl ml-12/>
     <span>Bump tag</span>
+    <a i-quill-link-out target="_blank" href="https://gitlab.mobvista.com/playable/bump-tag" />
   </div>
   <div i-ph-arrow-right-duotone op50 v-click />
   <div v-after>自动校验是否同步最新代码、并根据规则创建tag</div>
@@ -191,6 +185,7 @@ growY: 130
     <div w-35px h-56px border="l b gray/30" left-0 bottom-15px absolute />
     <div i-logos:figma text-2xl ml-12/>
     <span>Figma icons</span>
+    <a i-quill-link-out target="_blank" href="https://confluence.mobvista.com/pages/viewpage.action?pageId=86157550" />
   </div>
   <div i-ph-arrow-right-duotone op50 v-click />
   <div v-after>实现从设计、发布、通过自动化脚本同步到开发端的自动化流程</div>
@@ -199,6 +194,7 @@ growY: 130
     <div w-35px h-56px border="l b gray/30" left-0 bottom-15px absolute />
     <div i-unjs:unplugin text-2xl ml-12 />
     <span>Auto import</span>
+    <a i-quill-link-out target="_blank" href="https://unplugin.unjs.io/" />
   </div>
   <div i-ph-arrow-right-duotone op50 v-click />
   <div v-after>让<span text-green>Figma icons</span>、<span text-green>Pt组件</span>的使用更加简单；也让项目对第三方组件引入方式提供了更多的可能性</div>
@@ -208,53 +204,119 @@ growY: 130
 丰富的 <span v-mark.box.teal.delay400="5" text-teal mx1>工具链</span> 让你的开发更加简单～</div>
 
 <!--
-最佳实践如果去应用到我们的团队中来？
-以下是一些前端代码的最佳实践：
+站在巨人的肩膀上是一种表达，意味着我们借助前人的知识、经验和成就来取得进步。这句话最早出自于艾萨克·牛顿（Isaac Newton）的说法，他认为他的成功是因为他能够从其他科学家的工作中吸取到启示。
 
-git 协同规范：https://confluence.mobvista.com/pages/viewpage.action?pageId=16679591
-git rebase
+[click] 工具链这块在项目工程中也是充当不可缺失的角色
 
-工具链
-ci
-i18n
-bump-tag
-unplugin-auto-import
-svg-icon vs figma-icons-vue https://confluence.mobvista.com/pages/viewpage.action?pageId=86157550
+所谓，磨刀不误砍柴工
 
-开发环境
-volar https://marketplace.visualstudio.com/items?itemName=Vue.volar
+当有一些重复性工作，或者一些流程是可以规范起来的，我们都可以利用一些工具来替代重复性的人为操作
 
-公共模块
-pt-components
-common/components
-common/utils
-common/enums
-types
+[click] i18n工具，从一开始，都是人为从excel文件将翻译好的内容，copy到项目里面来的
 
-编码
-vue2.x
-vuex vs pinia
-composition api vs options api vs class component style
-TS（类型提示、类型编程）（案例：接口定义、剧本定义、组件设计、Hooks开发）
-组件设计（原子组件、HOC、业务组件）
-Hooks开发
-break change
+后面有了《视频编辑器》项目后，尝试一个半自动化的方案，比如把excel下载到本地后，调整下sheet的列，然后才能执行，解决人为手动copy的过程
 
-代码提交（如果提交你的代码，让reviewer更加容易的get到你要解决的问题）
+在其他项目上，在项目外的本地执行后，需要将执行的文件copy到项目里面来，文件一一对应，
 
-时间 or 质量 是否都可兼得？
-如何？
+嗯.....感觉还是不够简洁
 
-使用模块化：提高代码的可维护性和可重用性。
-// 使用模块化的方式组织你的代码，例如使用 ES Modules 或者模块打包工具（如Webpack、Rollup等）。这样可以
+既然这样，有没有一个工具是让它足够简单的呢？
 
-保持代码简洁：遵循单一职责原则，尽量保持函数和组件的代码简洁且易于理解。使用清晰的命名和注释，以提高代码的可读性。
+[click] PS：感谢下做这个事情的人
 
-遵循代码风格指南：选择并遵循适合你项目的代码风格指南，例如 Airbnb JavaScript Style Guide、Google JavaScript Style Guide等。使用一致的缩进、命名约定等，有助于团队合作和代码维护。
+[click] 自动创建新的tag，支持自动验证当前分支本地和远程的合并状态、本地分支和主分支的版本是否落后，直接跨年的主版本号递增
 
-错误处理和异常情况：在代码中处理错误和异常情况，并给出适当的反馈或错误处理机制。使用 try-catch 来捕获可能发生异常的代码块，并提供有意义的错误消息。
+[click] 为什么会有这个工具呢？
 
-性能优化：注意性能优化，包括减小文件大小、使用缓存、延迟加载等。优化图片、使用压缩和缓存技术来加快页面加载速度。
+之前在操作发版创建手动创建tag时候，有可能会创建错误，没有按指定的规则进行创建，或者序号错了
+
+特别是在跨月、跨年时候，人为操作并没有去考虑那么多，直接在最后的序号递增
+
+这是其一
+
+其二，打tag的时候，都是在迭代分支进行的，这个时候，如果迭代分支落后于master分支，人在无感知的情况，发布到生成，就会导致生产出现因为发布代码缺失而出现功能不符合预期
+
+所以我们就讨论，有没有一个工具，来帮我们创建一个合理的tag，并且它还会帮我们去校验是否有合并过maser的最新代码没有
+
+[click] 我解释下，这是一个什么东西
+
+[click] 打开链接， 讲解流程图
+-->
+
+---
+growX: 50
+growY: 130
+---
+
+# <span font-hand text-green scale-110 ml1 inline-block>站在巨人的肩膀上</span>
+
+<div flex="~ gap-2 items-center" text-hex-42b883 mt-15>
+  <div i-fa6-brands-vuejs text-2xl />
+  <span>组件库</span>
+</div>
+
+<div grid="~ cols-[max-content_min-content_auto] items-center gap-6" py8 px3>
+  <div flex="~ gap-2 items-center" text-hex-42b883 relative v-click>
+    <div w-35px h-45px border="l b gray/30" left-0 bottom-15px absolute />
+    <div i-ph-table-thin text-2xl ml-12/>
+    <span>MTable</span>
+    <a i-quill-link-out target="_blank" href="https://gitlab.mobvista.com/playable/m-table" />
+  </div>
+  <div i-ph-arrow-right-duotone op50 v-click />
+  <div v-after>通过JSON配置，快速生成数据表格</div>
+
+  <div flex="~ gap-2 items-center" text-hex-42b883 relative v-click>
+    <div w-35px h-45px border="l b gray/30" left-0 bottom-15px absolute />
+    <div i-fluent-form-20-regular text-2xl ml-12/>
+    <span>Schema Form</span>
+    <a i-quill-link-out target="_blank" href="http://el-schem-form.playable-portal-test.mintegral.com/" />
+  </div>
+  <div i-ph-arrow-right-duotone op50 v-click />
+  <div v-after>通过JSON配置，快速生成表单页面，提升一些通用功能的开发效率</div>
+
+  <div flex="~ gap-2 items-center" text-hex-F5BD35 relative v-click>
+    <div w-35px h-45px border="l b gray/30" left-0 bottom-15px absolute />
+    <div i-solar-figma-bold-duotone text-2xl ml-12/>
+    <span>Pt components</span>
+    <a i-quill-link-out target="_blank" href="https://www.figma.com/design/ppcx9IazVbvyDQqrV80mPT/Design-System" />
+  </div>
+  <div i-ph-arrow-right-duotone op50 v-click />
+  <div v-after>精美漂亮的UI组件，让你开发设计出来的页面就跟搭积木一样简单</div>
+
+</div>
+
+<div text-white:50 v-click="5">
+丰富的 <span v-mark.box.teal.delay400="5" text-teal mx1>组件</span> 给你搭积木一样的开发体验～</div>
+
+<!--
+工具链篇，不知道大家有没有理解，并且体会到它们给你们带来便捷
+
+如果你还没有理解，或者没有体会它的便捷
+
+没关系，如果可以，你可以给我们反馈一些你的使用体验，这将会让我们感知到，它还是有提升空间的。
+
+接下来，我们看看组件库
+
+[click] 它是一个可以通过JSON配置出你想要的表格的组件
+
+[click] 它支持四种配置方式，简单配置、slot、动态组件、自定义组件。基本能覆盖你所需要的场景
+
+
+
+[click] Schema Form 这是一个表单配置库，做过素材仓库一些功能的人，可能就了解过
+
+它越在一些简单的需求功能上，体现的效率就越明显
+
+当然，这样说并不是说它胜任不了复杂的功能点
+
+在PT报表页面，弹窗里面的筛选弹窗，都是基于它的可配置特性，将它作为基础能力，实现实现同一份配置可以渲染不同状态的数据，完成了筛选可回撤的能力
+
+[click] 
+
+[click] 这是我们PT相关产品延伸出来的一套UI原子组件
+
+[click] 得益于我们有优秀的设计团队，去规范并梳理那么多组件，让我们在开发时候，可以有更多精力去关注需求的实现
+
 -->
 
 ---
@@ -288,6 +350,17 @@ grow: right
 </div>
 
 <div text-xl text-white:50 v-click>
+<span flex="inline gap-1 items-center" text-yellow translate-y-0.6><div i-ph-lightbulb-filament-duotone />代码设计</span>
+</div>
+<div flex="~ gap-2 items-center" mb3 ml7 v-click>
+  <div i-ph-arrow-bend-down-right-duotone op50 />
+  <div>
+    了解如何去设计和实现原子组件、HOC、业务组件；
+    利用hooks思想组织并解耦复杂庞大的代码逻辑
+  </div>
+</div>
+
+<!-- <div text-xl text-white:50 v-click>
 <span flex="inline gap-1 items-center" text-yellow translate-y-0.6><div i-ph-lightbulb-filament-duotone />组件设计</span>
 </div>
 <div flex="~ gap-2 items-center" mb3 ml7 v-click>
@@ -303,9 +376,9 @@ grow: right
 <div flex="~ gap-2 items-center" mb3 ml7 v-click>
   <div i-ph-arrow-bend-down-right-duotone op50 />
   <div>
-    Hooks 思想可以引导你如何去组织你的复杂庞大的代码逻辑，让你体验写代码就跟写诗一样的感觉
+    Hooks 思想可以引导你如何去组织你的复杂庞大的代码逻辑，解耦庞大逻辑块。
   </div>
-</div>
+</div> -->
 
 
 <div text-xl text-white:50 v-click>
@@ -320,6 +393,23 @@ grow: right
 
 </div>
 
+<!--
+这里，我主要想分享下代码设计相关的
+
+[click] Composition API 是一个插件，可以让你在vue2.x版本就能体验开发风格是基于函数的组合，但组合式 API 并不是函数式编程
+
+组合式 API 是以 Vue 中数据可变的、细粒度的响应性系统为基础的，而函数式编程通常强调数据不可变
+
+这个思想在我们的仓库中也是应用的很多
+
+[click] 现在我们的新组件基本都使用了这套风格
+
+[click] 这个也是我们团队中要会使用的强类型语言
+
+[click] 当然，它的强大，也得看人怎么去使用
+
+[click] 代码设计这个话题，
+-->
 
 ---
 grow: right
@@ -334,7 +424,11 @@ class: text-center
 
 </div>
 
-<iframe forward:delay-500 v-click mt12 src="/markdown/why-composition-api.md" frameborder="0" width="100%" height="500px"></iframe>
+<iframe forward:delay-500 v-click mt12 src="https://cn.vuejs.org/guide/extras/composition-api-faq#what-is-composition-api" frameborder="0" width="100%" height="500px"></iframe>
+
+<!--
+相对于 Options API，它有更好的逻辑复用、更灵活的代码组织、更好的类型推导
+-->
 
 ---
 grow: right
