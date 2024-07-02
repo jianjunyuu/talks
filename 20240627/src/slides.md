@@ -970,55 +970,172 @@ class: text-center
 </div>
 </div> -->
 
-
-
-<!-- <div mt12 text-left text-white:50 text-4xl transition forward:delay-300 v-click>
-<span flex="inline gap-1 items-center" text-yellow translate-y-0.6><div i-ph-lightbulb-filament-duotone />组件设计</span>
-</div>
-
-<div mt12 text-left text-white:50 text-4xl transition forward:delay-300 v-click>
-<span flex="inline gap-1 items-center" text-yellow translate-y-0.6><div i-ph-lightbulb-filament-duotone />组件设计</span>
-</div> -->
-
 <!--
-
-设计组件的过程可以包括以下步骤：
-
-
-
-
-首先，了解下组件一些基本能力
-
-Props
-Slots
-Emits
-Methods
-
-确定要实现的功能点
-// TODO
-
-是否能提取基础能力？
-// TODO
-
-
-组件 功能 业务
-组件划分：
-
-公共模块
-
-common/pt-components 基础组件
-
-common/components 基础业务组件
-
-功能组件
-
-
-
-common/utils
-common/enums
-types
+在这之前，我们可以先从我们团队的情况来聊聊
 -->
 
+
+---
+growX: 50
+growY: 130
+---
+
+# 组件分类
+
+<div text-xl v-click mt10>
+基础组件库（包含原子组件、HOC）
+</div>
+<div forward:delay-300 v-click>
+<span text-xs transition duration-500 inline-block border="~ color-white" pl2 pr2 pt1 pb1 rounded-4px mr2 opacity-50 hover:opacity-100 >
+组件
+</span>
+</div>
+
+<div text-xl v-click mt4>
+基础业务抽象组件（包含原子组件、HOC，绑定了一些业务基础交互和能力）
+</div>
+
+<div forward:delay-300 v-click>
+<span text-xs transition duration-500 inline-block border="~ color-white" pl2 pr2 pt1 pb1 rounded-4px mr2 opacity-50 hover:opacity-100 >
+组件
+</span>
+<span text-xs transition duration-500 inline-block border="~ color-white" pl2 pr2 pt1 pb1 rounded-4px mr2 opacity-50 hover:opacity-100 >
+业务基本功能
+</span>
+</div>
+
+
+<div text-xl v-click mt4>
+业务组件
+</div>
+<div forward:delay-300 v-click>
+<span text-xs transition duration-500 inline-block border="~ color-white" pl2 pr2 pt1 pb1 rounded-4px mr2 opacity-50 hover:opacity-100 >
+组件
+</span>
+<span text-xs transition duration-500 inline-block border="~ color-white" pl2 pr2 pt1 pb1 rounded-4px mr2 opacity-50 hover:opacity-100 >
+业务基本功能
+</span>
+
+<span text-xs transition duration-500 inline-block border="~ color-white" pl2 pr2 pt1 pb1 rounded-4px mr2 opacity-50 hover:opacity-100 >
+应用场景
+</span>
+</div>
+
+
+<div text-xl op80 v-click mt4>
+三者的关系就跟<span v-mark.box.teal.delay400="5" text-teal mx1>倒金字塔</span>一样
+</div>
+
+<!--
+在我们团队开发中，从底层->应用层的层级划分的话，可以划分为下面3种类型
+
+
+[click] 基础组件（包含原子组件、HOC）
+
+[click] 它们关注的是组件本身，组件应该有什么方法、属性、事件
+它的边界在哪之类的思考
+
+不用关注组件业务应用场景
+
+[click] 基础业务抽象组件（业务维度的包含原子组件、HOC，绑定了一些业务基础交互和能力）
+
+[click] 它们关注的是组件本身，也需要关注业务的通用形态，不需要关注组件业务应用场景
+
+比如资产组弹窗 弹窗，里面根据UX和业务，
+
+提供了一个checkbox的单选、多选能力，
+
+也提供了UI状态的可配置性特性、
+
+提交结果前的可定制验证的能力
+
+[click] 业务组件：也就是我们日常迭代开发产出的组件，但并仅限于此
+
+[click] 它们关注的是组件本身，也需要关注业务的通用形态，并且也要关注组件业务的应用场景 
+
+[click] 回顾下，三者的角色关系就跟倒金字塔一样，业务组件需要关注更多的维度
+
+因为基础组件就是从日常开发中沉淀出来的，开发者应有意识去判断并设计自己的组件能否提取一些基础组件。
+
+-->
+
+---
+growX: 50
+growY: 130
+---
+
+# 组件能否拆分提取？
+
+<div text-xl v-click mt10 op50 :class="$clicks <= 1 ? 'text-lime' :''">
+
+日常迭代开发，我们经常会创建组件来解决当前操作下的场景功能
+- UI组件
+- 功能组件
+- UI+功能组件
+
+</div>
+
+<div text-xl v-click mt10 op50 :class="$clicks <= 2 ? 'text-lime' :''">
+
+提取拆分的原则
+- UI或者功能重复次数>=2
+- 包含>=2个核心功能逻辑模块
+- UIUX、技术角度，预设性设计
+
+</div>
+
+<!--
+创建组件的目的，就是我们觉得它可以解决一个在当前操作下的场景功能
+
+[click] 基于要解决场景功能，我们创建的组件可以归类为以下3种类型组件
+
+- UI组件：一些布局类、展示类的组件
+- 功能组件：基础的表单控件
+- UI+功能组件：表格组件、上传组件，支持点击、拖拽触发上传
+
+每个组件都有可能嵌套或者整合了多个功能的代码
+
+组件内的部分功能能力在外部，被多次的实现
+
+[click]
+-->
+
+---
+growX: 50
+growY: 130
+---
+
+<h1 flex="~ gap-2 items-center" text-hex-42b883>
+<span text-5xl inline-block i-tabler-world-code /> 走进代码
+</h1>
+
+编码不仅仅是给机器下达指令；它是将逻辑打磨并赋予创意以生命的过程。
+
+上传组件
+
+playturbo/src/views/pt-entry/creative-assets/media/uploader.vue
+
+common/components/asset-uploader/index.vue
+
+ve-pro/src/ve/aside/modular/upload/index.vue
+
+字幕添加
+
+ve-pro/src/ve/aside/modular/subtitle/manual-add.vue
+
+ve-pro/src/ve/aside/modular/subtitle/subtitle-add-btn.vue
+
+视频项目的导出列表页面（现在已复用）
+
+
+什么是场景功能呢？
+
+在自由编辑器中，我需要上传资源到项目资产中的功能
+在视频编辑器中，我需要上传资源到项目资产中的功能
+在视频编辑器中，我需要上传资源到资产组里面的功能
+在pt我的资产-创意资产中，支持上传资源作为资产功能
+
+在这之前，也别忽略了`在当前UI操作下`的个具体背景
 
 
 ---
@@ -1096,6 +1213,54 @@ class: grid grid-cols-[auto_640px] gap-4 justify-center
 
 </div>
 
+<!--
+关于周五你反馈的业务组件直接拷贝没复用导致迭代维护成本剧增的问题。你在现在的项目中找一个示例，然后按照你觉得对的方式修复了，这个项目上线之后，复盘的时候拿你这个 commit 出来做复盘。这个也是我之前想让你主导的【编码最佳实践】
+因为现况项目中已经存在不少这些代码，复盘的目的是不再扩散，后面遇到类同的 case ，应该怎么处理，现在已存在的问题，如果有时间的话，应该怎么处理。
+要说明白几个重点：
+1. 如何杜绝扩散
+2. 确认类似问题的处理方法（最佳实践）
+3. 现有问题处理方案
+a. 短期方案，当你发现有这种代码，维护之后写上 todo 以及同样逻辑的代码位置，让后来者记得维护时要注意
+b. 长期方案，当评审发现有这些代码，有时间重构时，按照（最佳实践）来重构
+
+
+
+设计组件的过程可以包括以下步骤：
+
+
+
+
+首先，了解下组件一些基本能力
+
+Props
+Slots
+Emits
+Methods
+
+确定要实现的功能点
+// TODO
+
+是否能提取基础能力？
+// TODO
+
+
+组件 功能 业务
+组件划分：
+
+公共模块
+
+common/pt-components 基础组件
+
+common/components 基础业务组件
+
+功能组件
+
+
+
+common/utils
+common/enums
+types
+-->
 
 ---
 layout: center
