@@ -1041,7 +1041,7 @@ growY: 130
 
 [click] 它们关注的是组件本身，也需要关注业务的通用形态，不需要关注组件业务应用场景
 
-比如资产组弹窗 弹窗，里面根据UX和业务，
+比如资产库弹窗，里面根据UX和业务，
 
 提供了一个checkbox的单选、多选能力，
 
@@ -1053,10 +1053,9 @@ growY: 130
 
 [click] 它们关注的是组件本身，也需要关注业务的通用形态，并且也要关注组件业务的应用场景 
 
-[click] 回顾下，三者的角色关系就跟倒金字塔一样，业务组件需要关注更多的维度
+[click] 回顾下，三者的关系就跟倒金字塔一样，业务组件需要关注更多的维度
 
 因为基础组件就是从日常开发中沉淀出来的，开发者应有意识去判断并设计自己的组件能否提取一些基础组件。
-
 -->
 
 ---
@@ -1111,32 +1110,42 @@ growY: 130
 
 编码不仅仅是给机器下达指令；它是将逻辑打磨并赋予创意以生命的过程。
 
-上传组件
+<div text-2xl  mt2>上传组件</div>
+<div text-xl text-white:50 flex="~ items-center"><span inline-block i-vscode-icons:file-type-vue />&nbsp;<span inline-block >playturbo/src/views/pt-entry/creative-assets/media/uploader.vue</span>
+</div>
 
-playturbo/src/views/pt-entry/creative-assets/media/uploader.vue
-
-common/components/asset-uploader/index.vue
-
-ve-pro/src/ve/aside/modular/upload/index.vue
-
-字幕添加
-
-ve-pro/src/ve/aside/modular/subtitle/manual-add.vue
-
-ve-pro/src/ve/aside/modular/subtitle/subtitle-add-btn.vue
-
-视频项目的导出列表页面（现在已复用）
+<div text-xl text-white:50 flex="~ items-center"><span inline-block i-vscode-icons:file-type-vue />&nbsp;<span inline-block >common/components/asset-uploader/index.vue</span>
+</div>
+<div text-xl text-white:50 flex="~ items-center"><span inline-block i-vscode-icons:file-type-vue />&nbsp;<span inline-block >ve-pro/src/ve/aside/modular/upload/index.vue</span>
+</div>
 
 
+<div text-2xl  mt2>字幕添加</div>
+<div text-xl text-white:50 flex="~ items-center"><span inline-block i-vscode-icons:file-type-vue />&nbsp;<span inline-block >ve-pro/src/ve/aside/modular/subtitle/manual-add.vue</span>
+</div>
+<div text-xl text-white:50 flex="~ items-center"><span inline-block i-vscode-icons:file-type-vue />&nbsp;<span inline-block >ve-pro/src/ve/aside/modular/subtitle/subtitle-add-btn.vue</span>
+</div>
+
+<div text-2xl  mt2>配音后的时长适配逻辑</div>
+<div text-xl text-white:50 flex="~ items-center"><span inline-block i-vscode-icons:file-type-typescript />&nbsp;<span inline-block >ve-pro/src/replace/multi-languages/languages-detail/language-detail.ts</span>
+</div>
+<div text-xl text-white:50 flex="~ items-center"><span inline-block i-vscode-icons:file-type-typescript />&nbsp;<span inline-block >ve-pro/src/replace/components/languages-fission-manager/model.ts </span>
+</div>
+
+
+<div text-2xl text-green:50 mt2>视频项目的导出列表页面（现在已复用）</div>
+
+<!--
 什么是场景功能呢？
 
-在自由编辑器中，我需要上传资源到项目资产中的功能
-在视频编辑器中，我需要上传资源到项目资产中的功能
-在视频编辑器中，我需要上传资源到资产组里面的功能
-在pt我的资产-创意资产中，支持上传资源作为资产功能
+- 在自由编辑器中，我需要上传资源到项目资产中的功能
+- 在视频编辑器中，我需要上传资源到项目资产中的功能
+- 在视频编辑器中，我需要上传资源到资产组里面的功能
+- 在pt我的资产-创意资产中，支持上传资源作为资产功能
 
 在这之前，也别忽略了`在当前UI操作下`的个具体背景
 
+-->
 
 ---
 grow: right
@@ -1169,7 +1178,7 @@ class: grid grid-cols-[auto_640px] gap-4 justify-center
 <div w-150  flex="~ gap-2" mb3 ml2 v-click>
   <div w-10 i-ph-arrow-bend-down-right-duotone op50 mt1 />
   <div border="~ color-purple" text-xs w-120 style="background-color:rgba(192, 132, 252, 0.1);padding: 8px;" rounded-8px>
-定义组件与外部世界之间的交互方式，包括输入和输出。考虑组件接收的参数、返回的结果以及可能引发的异常情况。
+确定提供给外部可配置的属性、暴露的方法、提供相应的事件
   </div>
 </div>
 
@@ -1189,7 +1198,7 @@ class: grid grid-cols-[auto_640px] gap-4 justify-center
 
 <div text-xl text-white:50 v-click>
 <span flex="inline gap-1 items-center" text-purple mb2>
-考虑可扩展性和重用性
+考虑可扩展性和复用性
 </span>
 </div>
 <div w-150  flex="~ gap-2" mb3 ml2 v-click>
@@ -1199,67 +1208,49 @@ class: grid grid-cols-[auto_640px] gap-4 justify-center
   </div>
 </div>
 
-
-<div text-xl text-white:50 mt2 v-click>
-上传组件
-</div>
-
-<div text-xl text-white:50 mt2 v-click>
-项目ID Name组件
-</div>
-
-
-
-
 </div>
 
 <!--
-关于周五你反馈的业务组件直接拷贝没复用导致迭代维护成本剧增的问题。你在现在的项目中找一个示例，然后按照你觉得对的方式修复了，这个项目上线之后，复盘的时候拿你这个 commit 出来做复盘。这个也是我之前想让你主导的【编码最佳实践】
-因为现况项目中已经存在不少这些代码，复盘的目的是不再扩散，后面遇到类同的 case ，应该怎么处理，现在已存在的问题，如果有时间的话，应该怎么处理。
-要说明白几个重点：
-1. 如何杜绝扩散
-2. 确认类似问题的处理方法（最佳实践）
-3. 现有问题处理方案
-a. 短期方案，当你发现有这种代码，维护之后写上 todo 以及同样逻辑的代码位置，让后来者记得维护时要注意
-b. 长期方案，当评审发现有这些代码，有时间重构时，按照（最佳实践）来重构
+是时候可以回答“怎么设计组件呢？”这个问题了
 
+[click] 在前面，我把组件分类拆为：基础组件、基础业务抽象组件、业务组件
 
+根据分类，分析每个分类自己的目标和范围
 
-设计组件的过程可以包括以下步骤：
+比如：举例怎么定目标和范围
 
+[click] 
 
+[click] 确认接口，主要确定提供给外部可配置的属性、暴露的方法、提供相应的事件
 
+[click] 比如：按钮组件
+- 我们允许配置它的主题样式、状态
+- 自定义展示的内容和多种传入内容的方式
+- 结合按钮状态，仅在可用状态下触发订阅的行为事件
 
-首先，了解下组件一些基本能力
+这就是一个基础组件最小颗粒度的设计
 
-Props
-Slots
-Emits
-Methods
+[click] 也给出了“提取拆分的原则”的3个原则
+- UI或者功能重复次数>=2
+- 包含>=2个核心功能逻辑模块
+- UIUX、技术角度，预设性设计
 
-确定要实现的功能点
-// TODO
+可以根据第二第三点 来设计你的功能模块
 
-是否能提取基础能力？
-// TODO
+比如上传组件：
+- 首先是一个基本的上传能力，这是使用开源的
+- 我们基于最基础的上传能力，自定义它的上传方式
+- 利用它提供的一些钩子，在每个生命周期处理特殊的逻辑（校验文件、分割文件、生成hash、 成功后调用其他服务进行同步）
 
+[click] 校验文件，本质就是上传组件的验证器、它并不需要关心去验证什么，验证不通过反馈什么。它只关注验证通过就传否则不上传，仅此而已
 
-组件 功能 业务
-组件划分：
+分割文件，这是一个、生成hash：这就是一个基础能力，并不会因为你的文件类型不一样或者业务而有区别
 
-公共模块
+成功后处理的任务：这个上传组件也不用关心，这是具体业务定制的行为，如果这块逻辑需要复用，那么就应该基于非业务性的但却定制了它的上传方式的基础组件进行封装
 
-common/pt-components 基础组件
+[click] 可扩展性和复用性，这个只要在“划分功能模块”的点做的好了，基本就能达到这个要求
 
-common/components 基础业务组件
-
-功能组件
-
-
-
-common/utils
-common/enums
-types
+[click]
 -->
 
 ---
@@ -1268,24 +1259,35 @@ class: text-center
 growX: 50
 growY: 100
 ---
-<h1 important-text-5xl v-click>Hooks</h1>
 
-<div text-white:50 text-2xl v-click>
-最佳实践是一个管理学概念，认为存在某种技术、方法、过程、活动或机制可以使实践的结果达到最优，并减少出错的可能性。
-A tool should help you get things done <span text-yellow2 italic v-mark.yellow.underline.delay300="2">faster</span> and/or <span text-lime2 v-mark.lime.underline.delay700="2">easier</span>
-</div>
+<h1  text-yellow2 important-text-5xl flex="~ items-center" v-click>
+<span inline-block i-arcticons:emoji-construction-sign />
+Hooks
+</h1>
+
+<!--
+Hooks简介
+1. 什么是Hooks
+Hooks并不是VUE特有的概念，实际上它原本被用于指代一些特定时间点会触发的勾子。
+
+而在React16之后，它被赋予了新的意义：
+一系列以 use 作为开头的方法，它们提供了让你可以完全避开 class式写法，在函数式组件中完成生命周期、状态管理、逻辑复用等几乎全部组件开发工作的能力
+
+Hooks最核心的价值来自于内部的状态管理
+
+2. Hooks与composition Api
+Hooks是一种基于闭包的函数式编程思维产物，所以通常我们会在函数式风格的框架或组件中使用Hook，比如VUE的组合式API(Composition Api)。
+
+Composition API即组合式API。它是一种通过函数来描述组件逻辑的开发模式。组合式API为开发者带来了更好的逻辑复用能力，通过组合函数来实现更加简洁高效的逻辑复用。
+-->
 
 ---
-grow: right
+layout: center
 class: text-center
-clicks: 5
-title: What Makes a Good Tool?
+growX: 50
+growY: 100
 ---
 
-<div transition duration-800 :class="$clicks < 2 ? 'translate-y-45' : ''" relative>
-
-# What Makes a <span v-mark.linethrough.red.delay200="{at:1,roughness:6,seed:146}" transition inline-block :class="$clicks >= 1 ? 'op50' : ''"> Good</span> Tool?
-
-<div font-hand bold absolute rotate--4 left-106 top-10 text-3xl text-lime1 delay-300 v-click>General & Useful</div>
-
-</div>
+<h1 text-green2 important-text-5xl flex="~ items-center" v-click>
+谢谢大家
+</h1>
