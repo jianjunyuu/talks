@@ -4,7 +4,7 @@ highlighter: shiki
 colorSchema: dark
 ---
 
-# 项目工程最佳实践
+# 探索优化&最佳实践
 ## 交互素材仓库（前端）<span text-2xl op50> -- 余建君</span>
 
 <!--
@@ -1110,7 +1110,9 @@ growY: 130
 
 编码不仅仅是给机器下达指令；它是将逻辑打磨并赋予创意以生命的过程。
 
-<div text-2xl  mt2>上传组件</div>
+<div text-2xl  mt2 transition forward:delay-300 v-click>
+上传组件
+
 <div text-xl text-white:50 flex="~ items-center"><span inline-block i-vscode-icons:file-type-vue />&nbsp;<span inline-block >playturbo/src/views/pt-entry/creative-assets/media/uploader.vue</span>
 </div>
 
@@ -1118,24 +1120,51 @@ growY: 130
 </div>
 <div text-xl text-white:50 flex="~ items-center"><span inline-block i-vscode-icons:file-type-vue />&nbsp;<span inline-block >ve-pro/src/ve/aside/modular/upload/index.vue</span>
 </div>
+</div>
 
 
-<div text-2xl  mt2>字幕添加</div>
+<div text-2xl  mt2 transition forward:delay-300 v-click>
+字幕添加
+
 <div text-xl text-white:50 flex="~ items-center"><span inline-block i-vscode-icons:file-type-vue />&nbsp;<span inline-block >ve-pro/src/ve/aside/modular/subtitle/manual-add.vue</span>
 </div>
 <div text-xl text-white:50 flex="~ items-center"><span inline-block i-vscode-icons:file-type-vue />&nbsp;<span inline-block >ve-pro/src/ve/aside/modular/subtitle/subtitle-add-btn.vue</span>
 </div>
 
-<div text-2xl  mt2>配音后的时长适配逻辑</div>
+</div>
+
+<div text-2xl  mt2 transition forward:delay-300 v-click>
+配音后的时长适配逻辑
+
 <div text-xl text-white:50 flex="~ items-center"><span inline-block i-vscode-icons:file-type-typescript />&nbsp;<span inline-block >ve-pro/src/replace/multi-languages/languages-detail/language-detail.ts</span>
 </div>
-<div text-xl text-white:50 flex="~ items-center"><span inline-block i-vscode-icons:file-type-typescript />&nbsp;<span inline-block >ve-pro/src/replace/components/languages-fission-manager/model.ts </span>
+<div text-xl text-white:50 flex="~ items-center"><span inline-block i-vscode-icons:file-type-typescript />&nbsp;<span inline-block >ve-pro/src/replace/components/languages-fission-manager/model.ts</span>
+</div>
 </div>
 
 
-<div text-2xl text-green:50 mt2>视频项目的导出列表页面（现在已复用）</div>
+<div text-2xl text-green:50 mt2 transition forward:delay-300 v-click>
+视频项目的导出列表页面（现在已复用）
+</div>
 
 <!--
+[click] 上传组件
+
+- playturbo/src/views/pt-entry/creative-assets/media/uploader.vue
+- common/components/asset-uploader/index.vue
+- ve-pro/src/ve/aside/modular/upload/index.vue
+
+
+[click] 字幕添加
+
+- ve-pro/src/ve/aside/modular/subtitle/manual-add.vue
+- ve-pro/src/ve/aside/modular/subtitle/subtitle-add-btn.vue
+
+[click] 配音后的时长适配逻辑
+
+- ve-pro/src/replace/multi-languages/languages-detail/language-detail.ts
+- ve-pro/src/replace/components/languages-fission-manager/model.ts
+
 什么是场景功能呢？
 
 - 在自由编辑器中，我需要上传资源到项目资产中的功能
@@ -1144,7 +1173,6 @@ growY: 130
 - 在pt我的资产-创意资产中，支持上传资源作为资产功能
 
 在这之前，也别忽略了`在当前UI操作下`的个具体背景
-
 -->
 
 ---
@@ -1279,6 +1307,21 @@ Hooks最核心的价值来自于内部的状态管理
 Hooks是一种基于闭包的函数式编程思维产物，所以通常我们会在函数式风格的框架或组件中使用Hook，比如VUE的组合式API(Composition Api)。
 
 Composition API即组合式API。它是一种通过函数来描述组件逻辑的开发模式。组合式API为开发者带来了更好的逻辑复用能力，通过组合函数来实现更加简洁高效的逻辑复用。
+
+拖拽
+- import { useDraggable } from '@ve-pro/ve/draggable/useDraggable'
+
+右键菜单
+- ve-pro/src/ve/utils/contextmenu.ts
+
+状态分离：
+- ve-pro/src/ve/timeline/segment.ts
+- ve-pro/src/ve/player/player-canvas/segment/use-segment.ts
+
+前端模拟一个假的进度
+- common/utils/use-client-progress.ts
+
+
 -->
 
 ---
